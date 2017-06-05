@@ -1,2 +1,0 @@
-# BlockBusters
-Blockchain voting system
