@@ -9,6 +9,8 @@
     <div class="sticky-topbar">
         <?php include 'Navbar.php' ?>
     </div>
+    <div class="block" style="height: 100px;">
+    </div>
     <div class="row">
         <div class="large-12 columns">
             <div class="row">
@@ -35,12 +37,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="height: 600px;">
         <div class="large-12 columns" id="#TheTabs">
             <div class="row collapse">
                 <div class="large-4 columns">
                     <ul class="tabs vertical tabHeight" data-tabs id="example-vert-tabs" role="tablist" data-deep-link="true">
-                        <li class="tabs-title"><a href="#PrevVotes">Previous Votes</a></li>
+                        <li class="tabs-title is-active"><a href="#PrevVotes">Previous Votes</a></li>
                         <li class="tabs-title"><a href="#Vote">Issue Vote</a></li>
                         <li class="tabs-title"><a href="#UpcomingVotes">Upcoming Votes</a></li>
                     </ul>
@@ -53,7 +55,7 @@
                                     <div class="callout">
                                         <div class="row">
                                             <div class="large-6 columns">
-                                                <h3>Previous Votes</h3>
+                                                <h4>Previous Votes</h4>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -100,7 +102,7 @@
                                     <div class="callout">
                                         <div class="row">
                                             <div class="large-6 columns">
-                                                <h3>Issue Vote</h3>
+                                                <h4>Issue Vote</h4>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -136,7 +138,7 @@
                                     <div class="callout">
                                         <div class="row">
                                             <div class="large-6 columns">
-                                                <h3>Upcoming Votes</h3>
+                                                <h4>Upcoming Votes</h4>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -150,6 +152,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="js/vendor/jquery.js"></script>
 <script src="js/vendor/what-input.js"></script>
