@@ -1,0 +1,87 @@
+.main {
+  border: 3px solid green;
+  position: relative;
+  margin: 15% 0 0 40%;
+  width: 800px; }
+
+h1 {
+  text-align: center;
+  font-size: 32px; }
+
+.header {
+  text-align: center;
+  font-size: 32px; }
+
+.loginForm {
+  display: table;
+  text-align: center; }
+  .loginForm .row {
+    display: table-row; }
+
+.label {
+  display: table-cell; }
+
+.input .button {
+  display: inline-block; }
+
+.centre {
+  text-align: center;
+  padding-top: 10%; }
+
+.hourInput {
+  width: 50px; }
+
+.fullWidth {
+  width: 100%; }
+
+.tabHeight {
+  height: 100%; }
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.li {
+  display: inline;
+  background-color: #1779ba;
+  color: #fefefe; }
+
+.li:hover {
+  color: #1779ba;
+  background-color: #fefefe; }
+
+.sticky-topbar {
+  width: 100%; }
+
+.nav {
+  margin-bottom: 40px; }
+
+.a {
+  color: #fefefe; }
+
+.nbButton {
+  background-color: #1779ba;
+  color: #fefefe; }
+
+.nbButton:hover {
+  color: #1779ba;
+  background-color: #fefefe; }
+
+.hourInput {
+  width: 70px; }
+
+.table {
+  border-collapse: collapse;
+  width: 300px; }
+  .table .th, .table .td {
+    border: 1px solid #1779ba;
+    text-align: left;
+    padding: 15px; }
+
+.table-wrapper {
+  width: 100px;
+  height: 50px;
+  overflow: auto; }
+
+/*# sourceMappingURL=style.css.map */

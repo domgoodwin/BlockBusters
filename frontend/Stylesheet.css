@@ -1,0 +1,55 @@
+/********************* Tables *********************/
+table {
+  border:1px solid #B5CFE5;
+  border-collapse:collapse;
+  align: center;
+  MARGIN: 20 0 20 0;
+  FONT-SIZE: 12px;
+  overflow: auto;
+}
+
+.hiddenTable, .hiddenTable th {
+	BORDER-TOP-STYLE: none;
+	BACKGROUND: none transparent scroll repeat 0% 0%;
+	BORDER-BOTTOM-STYLE: none;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+	PADDING: 8px 10px 8px 10px;
+}
+
+/********************* Buttons *********************/
+
+.button {
+	border-style: none;
+	HEIGHT: 30px;
+	WIDTH: 80px;
+	PADDING: 0px;
+	FILTER: none;
+	MARGIN: 0px;
+	ms-filter: none;
+	COLOR: #ffffff;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+
+/********************* Inputs *********************/
+
+.button {
+	border-style: none;
+	HEIGHT: 30px;
+	WIDTH: 30px;
+	PADDING: 0px;
+	FILTER: none;
+	MARGIN: 0px;
+	ms-filter: none;
+	COLOR: #ffffff;
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+}
+
+h1 {
+  font-family: Calibri;
+  color: red;
+}
