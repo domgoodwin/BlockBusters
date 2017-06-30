@@ -29,6 +29,18 @@ function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   };
   insert(params);
 }
+function insertUser(userID, pubKey, pass){
+  var table = "block_users";
+  var params = {
+      TableName:table,
+      Item:{
+          "user_id": nodeID, // TODO get ID from next one
+          "pub_key": pubKey,
+          "passphrase": pass
+      }
+  };
+  insert(params);
+}
 
 
 function insert(params){
