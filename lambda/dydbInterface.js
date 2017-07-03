@@ -2,6 +2,7 @@ var AWS = require("aws-sdk");
 
 //http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.03.html
 
+
 AWS.config.update({
   region: "eu-west-2",
   endpoint: "dynamodb.eu-west-2.amazonaws.com"
@@ -9,9 +10,11 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-insertNode("TEST-1", "127.0.0.0", "rpcuser", "todo", "client", "aws");
+// insertNode("TEST-1", "127.0.0.0", "rpcuser", "todo", "client", "aws");
+// var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
+// insertUser("0", "key", "pass", "test", address)
 
-function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
+exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
   var params = {
       TableName:table,
@@ -29,14 +32,16 @@ function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   };
   insert(params);
 }
-function insertUser(userID, pubKey, pass){
+exports.InsertUser = function insertUser(userID, pubKey, pass, name, address){
   var table = "block_users";
   var params = {
       TableName:table,
       Item:{
-          "user_id": nodeID, // TODO get ID from next one
+          "user_id": userID, // TODO get ID from next one
           "pub_key": pubKey,
-          "passphrase": pass
+          "passphrase": pass,
+          "name": name,
+          "address": address
       }
   };
   insert(params);
