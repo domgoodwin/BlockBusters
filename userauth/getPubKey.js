@@ -38,7 +38,7 @@ function encryptPassphrase($passphrase) {
     var plainText = $passphrase;
     //console.log("Original plain text: " + $passphrase);
     console.log("public key: " + publicKey);
-
+    console.log("private key: " + privateKey);
     //  Start with a new RSA object to demonstrate that all we
     //  need are the keys previously exported:
     var rsaEncryptor = new chilkat.Rsa();
