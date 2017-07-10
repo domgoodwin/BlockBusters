@@ -14,6 +14,31 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
+exports.Login = function login(userID, pass, cb){
+  var table = "block_users";
+  var params = {
+      TableName : table,
+      KeyConditionExpression: "#uid = :uid",
+      ExpressionAttributeNames:{
+          "#uid": "user_id"
+      },
+      ExpressionAttributeValues: {
+          ":uid":"1"
+      }
+  };
+
+  docClient.query(params, function(err, data) {
+      if (err) {
+          console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+      } else {
+          console.log("Query succeeded.");
+          data.Items.forEach(function(item) {
+              console.log(item.user_id + ": " + item.passphrase);
+              var rsa = new chilkat.Rsa();
+          });
+      }
+  });
+}
 
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
