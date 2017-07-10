@@ -14,6 +14,7 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
+
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
   var params = {
@@ -46,6 +47,37 @@ exports.InsertUser = function insertUser(userID, pubKey, pass, name, address){
   };
   insert(params);
 }
+exports.GetUser = function getUser(userID){
+  var table = "block_users";
+  var params = {
+      TableName:table,
+      Key:{
+          "user_id": "0" // TODO get ID from next one
+      }
+  };
+  get(params);
+}
+
+exports.GetNextUserID = function getNextID(callback){
+  var table = "block_users";
+  var params = {
+      TableName: table
+  };
+  docClient.scan(params, function(err, data){
+    if (err) {
+        console.error("Scan error:", JSON.stringify(err, null, 2));
+        callback(err);
+    } else {
+        console.log("Scan: ", JSON.stringify(data, null, 2));
+        var maxID = 0;
+        for (var i = 0; i < data.Items.length; i++) {
+          maxID = (data.Items[i].user_id > maxID ? data.Items[i].user_id : maxID);
+        }
+        console.log("top id:  " + maxID);
+        callback(Number(maxID) + 1);
+    }
+  })
+}
 
 
 function insert(params){
@@ -55,6 +87,17 @@ function insert(params){
           console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
       } else {
           console.log("Added item:", JSON.stringify(data, null, 2));
+      }
+  });
+}
+
+function get(params){
+  console.log("Getting a item...");
+  docClient.get(params, function(err, data) {
+      if (err) {
+          console.error("Unable to get item. Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+          console.log("Got item:", JSON.stringify(data, null, 2));
       }
   });
 }
