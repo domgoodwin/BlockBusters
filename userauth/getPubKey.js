@@ -36,7 +36,7 @@ function encryptPassphrase($passphrase) {
     var privateKey = rsa.ExportPrivateKey();
 
     var plainText = $passphrase;
-    console.log("Original plain text: " + $passphrase);
+    //console.log("Original plain text: " + $passphrase);
     console.log("public key: " + publicKey);
 
     //  Start with a new RSA object to demonstrate that all we
@@ -54,7 +54,7 @@ function encryptPassphrase($passphrase) {
 
     var usePrivateKey = false;
     var encryptedStr = rsaEncryptor.EncryptStringENC(plainText,usePrivateKey);
-    console.log("\nEncrypted text using public key: " + encryptedStr);
+    //console.log("\nEncrypted text using public key: " + encryptedStr);
 
 }
 
