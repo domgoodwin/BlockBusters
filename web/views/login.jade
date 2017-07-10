@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+  h1 Sign In
+
+  form(name = "login", action = "/blockbusters/login", method = "post")
+    | Private key
+    input(type="text", name="privatekey", id="privatekey")
+    br
+    | Passphrase
+    input(type="passphrase", name="passphrase", id="passphrase")
+    br
+    input(type="submit", value="Login")

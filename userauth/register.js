@@ -13,7 +13,7 @@ if (os.platform() == 'win32') {
     var chilkat = require('chilkat_node6_macosx');
 }
 
-function encryptPassphrase($passphrase) {
+function chilkatExample() {
 
     var rsa = new chilkat.Rsa();
 
@@ -35,9 +35,8 @@ function encryptPassphrase($passphrase) {
     var publicKey = rsa.ExportPublicKey();
     var privateKey = rsa.ExportPrivateKey();
 
-    var plainText = $passphrase;
-    console.log("Original plain text: " + $passphrase);
-    console.log("public key: " + publicKey);
+    var plainText = "Encrypting and decrypting should be easy!";
+    console.log("Original plain text: " + plainText);
 
     //  Start with a new RSA object to demonstrate that all we
     //  need are the keys previously exported:
@@ -56,6 +55,45 @@ function encryptPassphrase($passphrase) {
     var encryptedStr = rsaEncryptor.EncryptStringENC(plainText,usePrivateKey);
     console.log("\nEncrypted text using public key: " + encryptedStr);
 
+    //  Now decrypt:
+    var rsaDecryptor = new chilkat.Rsa();
+
+    rsaDecryptor.EncodingMode = "hex";
+    success = rsaDecryptor.ImportPrivateKey(privateKey);
+
+    usePrivateKey = true;
+    var decryptedStr = rsaDecryptor.DecryptStringENC(encryptedStr,usePrivateKey);
+
+    console.log("\nDecrypted encrypted text using private key: " + decryptedStr);
+
+    // encrpyt with private key:
+
+    var plainText = "My name is Olivia";
+    console.log("\nNew plain text: " + plainText);
+    var rsaEncryptor = new chilkat.Rsa();
+
+    rsaEncryptor.EncodingMode = "hex";
+    success = rsaEncryptor.ImportPrivateKey(privateKey);
+
+    usePrivateKey = true;
+    var encryptedStr = rsaEncryptor.EncryptStringENC(plainText,usePrivateKey);
+
+    console.log("\nEncrypted text with private key: " + encryptedStr);
+
+    //  Now decrypt with public key:
+    var rsaDecryptor = new chilkat.Rsa();
+
+    rsaDecryptor.EncodingMode = "hex";
+    success = rsaDecryptor.ImportPrivateKey(privateKey);
+
+    usePrivateKey = false;
+    var decryptedStr = rsaDecryptor.DecryptStringENC(encryptedStr,usePrivateKey);
+
+    console.log("\nDecrypted encrypted text using public key: " + decryptedStr);
+
+
+
+
 }
 
-encryptPassphrase("Olivia");
+chilkatExample();
