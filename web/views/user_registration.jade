@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  h1 Sign Up
+
+  form(name = "find", action = "/blockbusters/create", method = "post")
+    | Name
+    input(type="text", name="name", id="name")
+    br
+    | Address Line 1
+    input(type="text", name="addressline1", id="addresline1")
+    br
+    | Address Line 2
+    input(type="text", name="addressline2", id="addresline2")
+    br
+    | Postcode
+    input(type="text", name="postcode", id="postcode")
+    br
+    | Passphrase
+    input(type="passphrase", name="passphrase", id="passphrase")
+    br
+    input(type="submit", value="Submit")
