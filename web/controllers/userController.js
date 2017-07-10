@@ -1,4 +1,6 @@
-var user = require('../models/user');
+// var user = require('..web/models/user.js');
+var db = require('..lambda/dydbInterface.js')
+
 
 // Display Author create form on GET
 exports.user_create_get = function(req, res) {
@@ -7,5 +9,7 @@ exports.user_create_get = function(req, res) {
 
 // Handle Author create on POST
 exports.user_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: User create POST');
+    var address = {line1: req.body.addressline1, line2: req.body.addressline2, postcode: req.body.postcode}
+    var pubKey = "abc123"
+    db.insertUser(1, pubkey, req.body.passphrase, req.body.name, address);
 };
