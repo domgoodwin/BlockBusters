@@ -74,7 +74,7 @@ exports.GetNextUserID = function getNextID(callback){
           maxID = (data.Items[i].user_id > maxID ? data.Items[i].user_id : maxID);
         }
         console.log("top id:  " + maxID);
-        callback(Number(maxID) + 1);
+        callback(String(Number(maxID) + 1));
     }
   })
 }
