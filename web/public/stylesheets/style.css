@@ -1,8 +1,49 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.main {
+  border: 3px solid green;
+  position: relative;
+  margin: 15% 0 0 40%;
+  width: 800px; }
+
+h1 {
+  text-align: center;
+  font-size: 32px; }
+
+.header {
+  text-align: center;
+  font-size: 32px; }
+
+.loginForm {
+  display: table;
+  text-align: center; }
+  .loginForm .row {
+    display: table-row; }
+
+.label {
+  display: table-cell; }
+
+.input .button {
+  display: inline-block; }
+
+.centre {
+  text-align: center;
+  padding-top: 10%; }
+.error {
+  color: red;
 }
 
-a {
-  color: #00B7FF;
+.table {
+  border-collapse: collapse;
+  width: 300px; }
+  .table .th, .table .td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 15px; }
+
+.login {
+    height: 4rem;
 }
+
+.fullWidth {
+    width: 100%;
+}
+/*# sourceMappingURL=style.css.map */

@@ -3,15 +3,20 @@ extends layout
 block content
 
   h1 Sign In
-
-  form(name = "login", action = "/blockbusters/login", method = "post")
-    | User ID
-    input(type="text", name="userid", id="userid")
-    br
-    | Private key
-    input(type="text", name="privatekey", id="privatekey")
-    br
-    | Passphrase
-    input(type="text", name="passphrase", id="passphrase")
-    br
-    input(type="submit", value="Login")
+  div.columns.large-12
+      div.columns.large-6.large-push-3
+          form(name = "login", action = "/blockbusters/login", method = "post")
+            div.row
+                h4 User ID
+                input.login(type="text", name="userid", id="userid")
+                br
+            div.row
+                h4 Private key
+                input.login(type="text", name="privatekey", id="privatekey")
+                br
+            div.row
+                h4 Passphrase
+                input.login(type="password", name="passphrase", id="passphrase")
+                br
+            div.row
+                input.button.success.fullWidth(type="submit", value="Login")

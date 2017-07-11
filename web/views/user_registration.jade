@@ -3,21 +3,22 @@ extends layout
 block content
 
   h1 Sign Up
-
-  form(name = "find", action = "/blockbusters/create", method = "post")
-    | Name
-    input(type="text", name="name", id="name")
-    br
-    | Address Line 1
-    input(type="text", name="addressline1", id="addressline1")
-    br
-    | Address Line 2
-    input(type="text", name="addressline2", id="addressline2")
-    br
-    | Postcode
-    input(type="text", name="postcode", id="postcode")
-    br
-    | Passphrase
-    input(type="passphrase", name="passphrase", id="passphrase")
-    br
-    input(type="submit", value="Submit")
+  div.columns.large-12
+      div.columns.large-6.large-push-3
+          form(name = "find", action = "/blockbusters/create", method = "post")
+            h4 Name
+            input.login(type="text", name="name", id="name")
+            br
+            h4 Address Line 1
+            input.login(type="text", name="addressline1", id="addressline1")
+            br
+            h4 Address Line 2
+            input.login(type="text", name="addressline2", id="addressline2")
+            br
+            h4 Postcode
+            input.login(type="text", name="postcode", id="postcode")
+            br
+            h4 Passphrase
+            input.login(type="password", name="passphrase", id="passphrase")
+            br
+            input.button.success.fullWidth(type="submit", value="Submit")
