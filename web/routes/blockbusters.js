@@ -6,7 +6,7 @@ var user_controller = require('../controllers/userController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Blockbusters' });
 });
 
 /* GET request for creating a user.*/
@@ -17,6 +17,9 @@ router.post('/create', user_controller.user_create_post);
 
 /*GET request for logging in. */
 router.get('/login', user_controller.user_login_get);
+
+/*GET request for successfully registering */
+router.get('/success', user_controller.user_success_get);
 
 /*POST request for logging in. */
 router.post('/login', user_controller.user_login_post);
