@@ -30,6 +30,25 @@ var post_data = JSON.stringify(post_data);
      });
  });
 
+function getVote(blockid){
+    return post_data;
+}
+
+function caseVote(decision, user){
+  //
+
+  return "exmapleblockID";
+}
+
+function getResults(election){
+  return "dom wins";
+}
+
+ module.exports = {
+     getVote: getVote,
+     castVote: castVote,
+     getResults: getResults
+ }
  // post the data
  post_req.write(post_data);
  post_req.end();
