@@ -1,5 +1,22 @@
 extends layout
 
+script(src='web/controllers/test.js')
+
 block content
   h1= title
   p Welcome to #{title}
+
+  script.
+    check_test()
+
+  button#Login(
+  type='submit'
+  style='width: 25px; height: 25px; background-color: black;'
+  onclick="if you plan to use single quotes here, use double quotes outer"
+  )
+
+  button#Register(
+  type='submit'
+  style='width: 25px; height: 25px; background-color: black;'
+  onclick="if you plan to use single quotes here, use double quotes outer"
+  )
