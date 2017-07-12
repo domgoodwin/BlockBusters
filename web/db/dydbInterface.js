@@ -33,6 +33,9 @@ exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, 
   };
   insert(params);
 }
+exports.helloWorld = function helloWorld(){
+  return "hello world";
+}
 exports.InsertUser = function insertUser(userID, pubKey, pass, name, address){
   var table = "block_users";
   var params = {

@@ -7,18 +7,18 @@ var fs = require("fs");
 var keypair = require('keypair');
 
 var encryptStringWithRsaPublicKey = function(toEncrypt, pubKey) {
-    //var absolutePath = path.resolve(relativeOrAbsolutePathToPublicKey);
-    //var publicKey = fs.readFileSync(absolutePath, "utf8");
-    var publicKey = pubKey;
+    var absolutePath = path.resolve(pubKey);
+    var publicKey = fs.readFileSync(absolutePath, "utf8");
+    //var publicKey = pubKey;
     var buffer = new Buffer(toEncrypt);
     var encrypted = crypto.publicEncrypt(publicKey, buffer);
     return encrypted.toString("base64");
 };
 
 var decryptStringWithRsaPrivateKey = function(toDecrypt, privKey) {
-    //var absolutePath = path.resolve(relativeOrAbsolutePathtoPrivateKey);
-    //var privateKey = fs.readFileSync(absolutePath, "utf8");
-    var privateKey = privKey;
+    var absolutePath = path.resolve(privKey);
+    var privateKey = fs.readFileSync(absolutePath, "utf8");
+    //var privateKey = privKey;
     var buffer = new Buffer(toDecrypt, "base64");
     var decrypted = crypto.privateDecrypt(privateKey, buffer);
     return decrypted.toString("utf8");
@@ -51,6 +51,6 @@ module.exports = {
 }
 
 //generateKeyPair("test1");
- //var enTx = encryptStringWithRsaPublicKey("test", path.join(__dirname, '..', 'tmp', 'pairName.pub'));
- //console.log(enTx);
- //console.log(decryptStringWithRsaPrivateKey(enTx, path.join(__dirname, '..', 'tmp', 'pairName')));
+ var enTx = encryptStringWithRsaPublicKey("test", path.join(__dirname, '..', 'tmp', 'pairName.pub'));
+ console.log(enTx);
+ console.log(decryptStringWithRsaPrivateKey(enTx, path.join(__dirname, '..', 'tmp', 'pairName')));
