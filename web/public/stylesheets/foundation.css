@@ -15,7 +15,7 @@
      *    IE on Windows Phone and in iOS.
      */
 html {
-  font-family: sans-serif;
+  font-family:'Lato', sans-serif;
   /* 1 */
   line-height: 1.15;
   /* 2 */
@@ -229,7 +229,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -438,7 +438,7 @@ body {
   margin: 0;
   padding: 0;
   background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: normal;
   line-height: 1.5;
   color: #0a0a0a;
@@ -1309,7 +1309,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: normal;
   color: inherit;
@@ -1447,7 +1447,7 @@ code {
   padding: 0.125rem 0.3125rem 0.0625rem;
   border: 1px solid #cacaca;
   background-color: #e6e6e6;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-family: 'Lato', sans-serif;
   font-weight: normal;
   color: #0a0a0a; }
 
@@ -1455,7 +1455,7 @@ kbd {
   margin: 0;
   padding: 0.125rem 0.25rem 0;
   background-color: #e6e6e6;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-family: 'Lato', sans-serif;
   color: #0a0a0a; }
 
 .subheader {
