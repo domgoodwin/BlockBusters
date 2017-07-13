@@ -41,7 +41,7 @@ function caseVote(decision, user){
 }
 
 function getResults(election){
-  return "dom wins";
+  return "dom sucks";
 }
 
  module.exports = {

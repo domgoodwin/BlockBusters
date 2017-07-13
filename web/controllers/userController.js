@@ -11,6 +11,7 @@ exports.user_create_get = function(req, res) {
 // Display Author create form on GET
 exports.user_login_get = function(req, res) {
     res.render('login', { title: 'Login' });
+
 };
 
 // Handle Author create on POST
@@ -33,5 +34,12 @@ exports.user_success_get = function(req, res) {
 
 // Handle Author login on POST
 exports.user_login_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Login POST');
-};
+  var post = req.body;
+  if (db.GetUser(req.body.userid,req.body.privatekey,req.body.passphrase)) {
+    req.session.user_id = req.body.userid;
+    req.session.privatekey = req.body.privatekey;
+    res.redirect('/success');
+  } else {
+    res.render('login', { info: 'Wrong login info', title:'Login'});
+  }
+  };
