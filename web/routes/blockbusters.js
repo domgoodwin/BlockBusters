@@ -30,5 +30,4 @@ router.get('/success', user_controller.user_success_get);
 /*POST request for logging in. */
 router.post('/login', user_controller.user_login_post);
 
-
 module.exports = router;
