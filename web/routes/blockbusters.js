@@ -24,4 +24,16 @@ router.get('/success', user_controller.user_success_get);
 /*POST request for logging in. */
 router.post('/login', user_controller.user_login_post);
 
+/*GET request for create vote */
+router.get('/createvote', user_controller.user_createvote_get);
+
+/*POST request for create vote */
+router.post('/createvote', user_controller.user_createvote_post);
+
+/*GET request for create vote */
+router.get('/displayvote', user_controller.user_displayvote_get);
+
+/*POST request for create vote */
+router.post('/displayvote', user_controller.user_displayvote_post);
+
 module.exports = router;

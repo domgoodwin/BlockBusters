@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 Create vote
+
+  div.columns.large-12
+      div.columns.large-6.large-push-3
+          form(name = "createvote", action = "/blockbusters/createvote", method = "post")
+            div.row
+                h4 Vote:
+                br
+            div.row
+                h4 Chosen party
+                input.login.fullWidth(list="judges", name="judges")
+                datalist#judges
+                    option(value = "Les Frost")
+                    option(value = "Simon Hopkinson")
+                    option(value = "Jan Barr")
+                    option(value = "Craig Wappett")
+                br
+                br
+            div.row
+                input.button.success.fullWidth(type="submit", value="Issue vote")

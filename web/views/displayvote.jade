@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Your vote
+
+  div.columns.large-12
+      div.columns.large-6.large-push-3
+       form(name = "getvote", action = "/blockbusters/displayvote", method = "post")
+            div.row
+                h4 Blockchain:
+                input.login.fullWidth(type="text", id="blockchain")
+                br
+            div.row
+                input.button.success.fullWidth(type="submit", value="Get vote")
+            div.row
+                br
+                h2 You've voted for:
+                br
