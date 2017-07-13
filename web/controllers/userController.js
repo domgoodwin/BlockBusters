@@ -53,5 +53,6 @@ exports.user_displayvote_get = function(req, res) {
 
 // Handle Author login on POST
 exports.user_displayvote_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Display vote POST');
+    var blockid = req.body.blockid;
+    res.send('NOT IMPLEMENTED: Display vote POST' + blockid);
 };

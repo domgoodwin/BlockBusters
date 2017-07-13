@@ -8,8 +8,8 @@ block content
       div.columns.large-6.large-push-3
        form(name = "getvote", action = "/blockbusters/displayvote", method = "post")
             div.row
-                h4 Blockchain:
-                input.login.fullWidth(type="text", id="blockchain")
+                h4 Block ID:
+                input.login.fullWidth(type="text", id="blockid" name="blockid")
                 br
             div.row
                 input.button.success.fullWidth(type="submit", value="Get vote")
