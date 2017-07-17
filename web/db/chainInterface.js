@@ -83,7 +83,7 @@ function getVote(stream, blockid, cb){
 
 
 function getResults(election){
-  return "dom wins";
+  return "dom sucks";
 }
 
 // castVote("party", function (cb)

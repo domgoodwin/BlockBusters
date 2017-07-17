@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+  h1 July 2017 Vote
+
+  div.columns.large-12
+      div.columns.large-6.large-push-3
+          form(name = "createvote", action = "/blockbusters/createvote", method = "post")
+            div.row
+                br
+                h3 Chosen party
+                select.login.fullWidth(id="judges")
+                    option
+                    option Craig Wappett
+                    option Simon Hopkinson
+                    option Jan Barr
+                    option Michael Osborne
+                    option Keith Rounding
+                    option Simon Pearson
+                    option David Wilson
+                    option Les Frost
+                    option Anouska Ramsay
+                    option Gary Robinson
+                    option Nick Meyne
+                    option Rebecca Hudson
+                br
+                br
+            div.row
+                input.button.success.fullWidth(type="submit", value="Issue vote")

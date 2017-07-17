@@ -3,8 +3,10 @@ extends layout
 block content
 
   h1 Sign In
+  h2 #{info}
   div.columns.large-12
       div.columns.large-6.large-push-3
+
           form(name = "login", action = "/blockbusters/login", method = "post")
             div.row
                 h4 User ID
@@ -19,4 +21,7 @@ block content
                 input.login(type="password", name="passphrase", id="passphrase")
                 br
             div.row
+            div.columns.large-6
+                input.button.success.fullWidth(type="submit", value="Read card")
+            div.columns.large-6
                 input.button.success.fullWidth(type="submit", value="Login")

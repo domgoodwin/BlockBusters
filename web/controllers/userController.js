@@ -1,6 +1,7 @@
 // var user = require('..web/models/user.js');
 var db = require('../db/dydbInterface.js');
 var keyTools = require('../db/keyTools.js');
+var hash = require('crypto');
 
 
 // Display Author create form on GET
@@ -11,6 +12,7 @@ exports.user_create_get = function(req, res) {
 // Display Author create form on GET
 exports.user_login_get = function(req, res) {
     res.render('login', { title: 'Login' });
+
 };
 
 // Handle Author create on POST
@@ -33,5 +35,14 @@ exports.user_success_get = function(req, res) {
 
 // Handle Author login on POST
 exports.user_login_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Login POST');
-};
+  var post = req.body;
+  var privatekey = req.body.privatekey
+  var passphrase = keyTools.encryptStringWithRsaPublicKey(req.body.passphrase, privatekey);
+  if (db.GetUser(req.body.userid,privatekey,passphrase)) {
+    req.session.user_id = req.body.userid;
+    req.session.privatekey = req.body.privatekey;
+    res.redirect('/success');
+  } else {
+    res.render('login', { info: 'Wrong login info', title:'Login'});
+  }
+  };

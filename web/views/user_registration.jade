@@ -3,6 +3,8 @@ extends layout
 block content
 
   h1 Sign Up
+  script.
+    console.log("working")
   div.columns.large-12
       div.columns.large-6.large-push-3
           form(name = "find", action = "/blockbusters/create", method = "post")
@@ -21,4 +23,7 @@ block content
             h4 Passphrase
             input.login(type="password", name="passphrase", id="passphrase")
             br
-            input.button.success.fullWidth(type="submit", value="Submit")
+            div.columns.large-6
+                input.button.success.fullWidth(type="submit", value="Submit")
+            div.columns.large-6
+                input.button.success.fullWidth(type="submit", value="Save to card")
