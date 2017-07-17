@@ -38,10 +38,12 @@ exports.user_success_get = function(req, res) {
 // Handle Author login on POST
 exports.user_login_post = function(req, res) {
   var post = req.body;
-  var privatekey = "-----BEGIN RSA PRIVATE KEY-----\n" + req.body.privatekey + "\n-----END RSA PRIVATE KEY-----";
+  var priv = "-----BEGIN RSA PRIVATE KEY-----\n" + req.body.privatekey + "\n-----END RSA PRIVATE KEY-----\n";
+  var privatekey = {private: priv};
   console.log(req.body.passphrase);
-  var passphrase = keyTools.encryptStringWithPrivateKey(req.body.passphrase, privatekey);
-  var done = db.login(passphrase, "10");
+  //var passphrase = keyTools.encryptStringWithPrivateKey(req.body.passphrase, privatekey);
+  var passphrase = req.body.passphrase;
+  var done = db.login(passphrase, "10", privatekey);
   console.log(done);
   if (done) {
     req.session.user_id = req.body.userid;

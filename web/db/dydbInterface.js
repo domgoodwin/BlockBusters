@@ -18,14 +18,16 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
-function login(passphrase, username, privateKey){
+exports.login = function login(passphrase, username, privateKey){
   var data = getUser(username, function(cb) {
     //var kPair = key.generateKeyPair("test");
     var shasum = crypto.createHash('sha256');
+    console.log(privateKey);
     console.log("before:" + passphrase);
-    var pass = key.encryptStringWithPrivateKey(passphrase, privateKey);
+    var pass = key.encryptStringWithPrivateKey(passphrase, privateKey.private);
     console.log("mid:" + pass);
     //var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
+    console.log(cb.Item.pub_key);
     pass  = key.decryptStringWithPublicKey(pass, cb.Item.pub_key);
     console.log("after:" + pass);
     var hash = crypto.createHash('sha1');
