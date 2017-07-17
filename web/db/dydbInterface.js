@@ -18,20 +18,23 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
-function login(passphrase, username){
+function login(passphrase, username, privateKey){
   var data = getUser(username, function(cb) {
     //var kPair = key.generateKeyPair("test");
     var shasum = crypto.createHash('sha256');
-    //var pass = encryptStringWithPrivateKey(passphrase, kPair.private);
-    //console.log(pass);
-    var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
-    //pass  = decryptStringWithPublicKey(pass, kPair.public);
-    //console.log(pass);
+    console.log("before:" + passphrase);
+    var pass = key.encryptStringWithPrivateKey(passphrase, privateKey);
+    console.log("mid:" + pass);
+    //var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
+    pass  = key.decryptStringWithPublicKey(pass, cb.Item.pub_key);
+    console.log("after:" + pass);
     var hash = crypto.createHash('sha1');
     var hashed = shasum.digest("pass");
     return (hashed == cb.Item.passphrase);
   });
 }
+
+//login("blockbusters", "10");
 
 
 
