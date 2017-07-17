@@ -1,6 +1,6 @@
 var https = require('https');
 var querystring = require('querystring');
-var convertHex = require('convert-hex')
+//var convertHex = require('convert-hex')
 
 function request(post_data, cb){
   // An object of options to indicate where to post to
@@ -91,15 +91,15 @@ function getResults(election){
 //     console.log(cb);
 // });
 
-getVote("july-2017", "51b3192af96472d6d525e3bd46e3e81b3c61a7d86bcd03fac638c9124a0f5c3b",function (cb)
-{
-  console.log(cb);
-  var hex = cb.toString();
-  console.log(hex);
-  var hexData = cb.toString('utf8').toString('utf8');
-  console.log(hexData);
-
-});
+// getVote("july-2017", "51b3192af96472d6d525e3bd46e3e81b3c61a7d86bcd03fac638c9124a0f5c3b",function (cb)
+// {
+//   console.log(cb);
+//   var hex = cb.toString();
+//   console.log(hex);
+//   var hexData = cb.toString('utf8').toString('utf8');
+//   console.log(hexData);
+//
+// });
  module.exports = {
      getVote: getVote,
      castVote: castVote,

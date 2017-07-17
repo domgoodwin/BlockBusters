@@ -36,9 +36,6 @@ function login(passphrase, username, privateKey){
 
 //login("blockbusters", "10");
 
-
-
-
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
   var params = {
@@ -96,7 +93,7 @@ exports.GetNextUserID = function getNextID(callback){
         console.error("Scan error:", JSON.stringify(err, null, 2));
         callback(err);
     } else {
-        console.log("Scan: ", JSON.stringify(data, null, 2));
+        //console.log("Scan: ", JSON.stringify(data, null, 2));
         var maxID = 0;
         for (var i = 0; i < data.Items.length; i++) {
           maxID = (data.Items[i].user_id > maxID ? data.Items[i].user_id : maxID);
