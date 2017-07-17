@@ -12,7 +12,7 @@ exports.user_createvote_get = function(req, res) {
 // Handle Author login on POST
 exports.user_createvote_post = function(req, res) {
     var reply;
-    ch.castVote("test", function(cb){
+    ch.castVote(req.body.judges, function(cb){
      //res.send('VOTE CAST: ' + cb.toString());
       res.render('voteconfirm', { info: cb.toString()});
     });
@@ -32,6 +32,11 @@ exports.user_displayvote_get = function(req, res) {
 exports.user_displayvote_post = function(req, res) {
     var blockid = req.body.blockid;
     ch.getVote("july-2017", blockid, function(cb){
-        res.send('VOTE CAST: ' + cb.toString());
-    })
+        //res.send('VOTE CAST: ' + cb.toString());
+        res.render('retrievevote', { info: cb.toString()});
+    });
+};
+
+exports.user_retrievevote_get = function(req, res) {
+    res.render('retrievevote', { title: 'Vote'});
 };
