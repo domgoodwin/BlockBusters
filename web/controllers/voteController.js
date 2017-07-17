@@ -12,7 +12,7 @@ exports.user_createvote_get = function(req, res) {
 // Handle Author login on POST
 exports.user_createvote_post = function(req, res) {
     var reply;
-    ch.castVote("test", function(cb){
+    ch.castVote(req.body.judges, function(cb){
      //res.send('VOTE CAST: ' + cb.toString());
       res.render('voteconfirm', { info: cb.toString()});
     });
