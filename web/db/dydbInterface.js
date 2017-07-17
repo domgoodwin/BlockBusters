@@ -1,6 +1,8 @@
 var AWS = require("aws-sdk");
 var key = require('../db/keyTools.js');
 var crypto = require('crypto');
+var keypair = require('keypair');
+var StringDecoder = require('string_decoder').StringDecoder;
 
 //http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.03.html
 
@@ -18,17 +20,21 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 function login(passphrase, username){
   var data = getUser(username, function(cb) {
-    console.log(data);
+    //var kPair = key.generateKeyPair("test");
     var shasum = crypto.createHash('sha256');
-    var pass  = key.decryptStringWithRsaPrivateKey(passphrase, cb.Item.pub_key);
+    //var pass = encryptStringWithPrivateKey(passphrase, kPair.private);
+    //console.log(pass);
+    var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
+    //pass  = decryptStringWithPublicKey(pass, kPair.public);
+    //console.log(pass);
     var hash = crypto.createHash('sha1');
     var hashed = shasum.digest("pass");
-    console.log(hashed);
+    return (hashed == cb.Item.passphrase);
   });
 }
 
+<<<<<<< HEAD
 //login("", "6");
-
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
   var params = {
