@@ -22,7 +22,27 @@ h1 {
   display: table-cell; }
 
 .input .button {
-  display: inline-block; }
+  display: inline-block;
+  text-align: center;
+}
+
+.menubutton {
+  display: inline-block;
+  text-align: center;
+  height: 160px;
+  background-color: #3caa96;
+  color: #fefefe;
+  font-size: 2rem;
+}
+
+.menubutton:hover, .menubutton:focus {
+  background-color: #B2E4DB;
+  color: #fefefe; }
+
+.buttondiv {
+    padding-bottom: 20px;
+}
+
 
 .centre {
   text-align: center;
@@ -51,5 +71,46 @@ h1 {
 .privateKey {
     height: 4rem;
     font-size:1rem;
+}
+
+.blockCentre {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+.leftAlign {
+    text-align: left;
+}
+
+.fixed-horizontal-center
+{
+    position: fixed;
+    top: 100px; /* or whatever top you need */
+    left: 50%;
+    width: 40%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.fixed-center
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }
 /*# sourceMappingURL=style.css.map */
