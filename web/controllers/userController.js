@@ -3,6 +3,9 @@ var db = require('../db/dydbInterface.js');
 var keyTools = require('../db/keyTools.js');
 var hash = require('crypto');
 
+db.GetNextUserID(function(maxID){
+  console.log(maxID);
+});
 
 // Display Author create form on GET
 exports.user_create_get = function(req, res) {

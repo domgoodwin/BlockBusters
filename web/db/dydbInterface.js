@@ -108,13 +108,16 @@ exports.GetNextUserID = function getNextID(callback){
         //console.log("Scan: ", JSON.stringify(data, null, 2));
         var maxID = 0;
         for (var i = 0; i < data.Items.length; i++) {
-          maxID = (data.Items[i].user_id > maxID ? data.Items[i].user_id : maxID);
+          if(Number(data.Items[i].user_id) > maxID){
+            maxID = Number(data.Items[i].user_id);
+          }
         }
         console.log("top id:  " + maxID);
         callback(String(Number(maxID) + 1));
     }
   })
 }
+
 
 
 function insert(params){
