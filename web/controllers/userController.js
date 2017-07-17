@@ -50,7 +50,7 @@ exports.user_login_post = function(req, res) {
     if (done) {
       // req.session.user_id = req.body.userid;
       // req.session.privatekey = req.body.privatekey;
-      res.redirect('/success');
+      res.redirect('/blockbusters/createvote');
     } else {
       res.render('login', { info: 'Wrong login info', title:'Login'});
     }
