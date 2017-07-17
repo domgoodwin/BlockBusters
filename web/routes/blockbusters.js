@@ -40,11 +40,13 @@ router.post('/createvote', vote_controller.user_createvote_post);
 /* GET request for creating a vote.*/
 router.get('/voteconfirm', vote_controller.user_voteconfirm_get);
 
-
 /* GET request for creating a vote.*/
 router.get('/displayvote', vote_controller.user_displayvote_get);
 
 /* POST request for creating vote. */
 router.post('/displayvote', vote_controller.user_displayvote_post);
+
+/* GET request for creating a vote.*/
+router.get('/retrievevote', vote_controller.user_retrievevote_get);
 
 module.exports = router;
