@@ -17,15 +17,17 @@ exports.user_login_get = function(req, res) {
 
 // Handle Author create on POST
 exports.user_create_post = function(req, res) {
-    var address = {line1: req.body.addressline1, line2: req.body.addressline2, postcode: req.body.postcode}
-    var key = keyTools.generateKeyPair();
-    var pubKey = key.public;
-    var privateKey = key.private;
+
 
     db.GetNextUserID(function(maxID){
-      db.InsertUser(maxID, pubKey, req.body.passphrase, req.body.name, address);
+        var address = {line1: req.body.addressline1, line2: req.body.addressline2, postcode: req.body.postcode}
+        var key = keyTools.generateKeyPair();
+        var pubKey = key.public;
+        var privateKey = key.private;
+        db.InsertUser(maxID, pubKey, req.body.passphrase, req.body.name, address);
+        res.render('success', {key: privateKey, title: 'User registereddd successfully'});
     });
-    res.render('success', {params: {key: privateKey}});
+
 };
 
 // Display Author create form on GET
