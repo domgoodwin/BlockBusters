@@ -3,6 +3,7 @@ var router = express.Router();
 
 // Require controller modules
 var user_controller = require('../controllers/userController');
+var vote_controller = require('../controllers/voteController');
 
 var world = function(){
     console.log("It's working! :D");
@@ -29,5 +30,11 @@ router.get('/success', user_controller.user_success_get);
 
 /*POST request for logging in. */
 router.post('/login', user_controller.user_login_post);
+
+/* GET request for creating a vote.*/
+router.get('/createvote', vote_controller.user_createvote_get);
+
+/* POST request for creating vote. */
+router.post('/createvote', vote_controller.user_createvote_post);
 
 module.exports = router;
