@@ -21,7 +21,7 @@ exports.user_create_post = function(req, res) {
 
     db.GetNextUserID(function(maxID){
         var address = {line1: req.body.addressline1, line2: req.body.addressline2, postcode: req.body.postcode}
-        var key = keyTools.generateKeyPair();
+        var key = keyTools.generateKeyPair(req.body.keyname);
         var pubKey = key.public;
         var privateKey = key.private;
         db.InsertUser(maxID, pubKey, req.body.passphrase, req.body.name, address);
@@ -38,18 +38,19 @@ exports.user_success_get = function(req, res) {
 // Handle Author login on POST
 exports.user_login_post = function(req, res) {
   var post = req.body;
-  var priv = "-----BEGIN RSA PRIVATE KEY-----\n" + req.body.privatekey + "\n-----END RSA PRIVATE KEY-----\n";
-  var privatekey = {private: priv};
-  console.log(req.body.passphrase);
+  var priv = req.body.privatekey;
+  //console.log(req.body.passphrase);
   //var passphrase = keyTools.encryptStringWithPrivateKey(req.body.passphrase, privatekey);
   var passphrase = req.body.passphrase;
-  var done = db.login(passphrase, "10", privatekey);
-  console.log(done);
-  if (done) {
-    req.session.user_id = req.body.userid;
-    req.session.privatekey = req.body.privatekey;
-    res.redirect('/success');
-  } else {
-    res.render('login', { info: 'Wrong login info', title:'Login'});
-  }
+  db.login(passphrase, req.body.userid, priv, function(done){
+    console.log("cont" + done);
+    if (done) {
+      // req.session.user_id = req.body.userid;
+      // req.session.privatekey = req.body.privatekey;
+      res.redirect('/success');
+    } else {
+      res.render('login', { info: 'Wrong login info', title:'Login'});
+    }
+  });
+
  };

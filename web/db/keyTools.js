@@ -6,32 +6,39 @@ var fs = require("fs");
 //for genraing the keys
 var keypair = require('keypair');
 
+
+
 var encryptStringWithPrivateKey = function(toEncrypt, privKey) {
-    //var absolutePath = path.resolve(pubKey);
-    //var publicKey = fs.readFileSync(absolutePath, "utf8");
+    var absolutePath = path.resolve("tmp/" + privKey);
+    var privateKey = fs.readFileSync(absolutePath, "utf8");
+    console.log(privateKey);
     var buffer = new Buffer(toEncrypt);
-    var encrypted = crypto.privateEncrypt(privKey, buffer);
+    var encrypted = crypto.privateEncrypt(privateKey, buffer);
     return encrypted.toString("base64");
 };
 
 var decryptStringWithPublicKey = function(toDecrypt, pubKey) {
-    //var absolutePath = path.resolve(privKey);
-    //var privateKey = fs.readFileSync(absolutePath, "utf8");
+    var absolutePath = path.resolve("tmp/" + pubKey + ".pub");
+    var publicKey = fs.readFileSync(absolutePath, "utf8");
+    console.log("pkey:" + publicKey);
     var buffer = new Buffer(toDecrypt, "base64");
-    var decrypted = crypto.publicDecrypt(pubKey, buffer);
+    var decrypted = crypto.publicDecrypt(publicKey, buffer);
     return decrypted.toString("utf8");
 };
 
 var generateKeyPair = function(pairName){
   var pair = keypair();
   console.log(pair);
-  return pair;
-  //var fp = path.join(__dirname, '..', 'tmp', pairName);
+  var fp = path.join(__dirname, '..', 'tmp', pairName);
+
   //public key
-  //saveToFile(pair.public, fp + ".pub");
+  saveToFile(pair.public, fp + ".pub");
   //priv key
-  //saveToFile(pair.private, fp);
+  saveToFile(pair.private, fp);
+    return pair;
 };
+
+
 
 var saveToFile = function(key, filePath){
   fs.writeFile(filePath, key, function(err) {
@@ -47,6 +54,8 @@ module.exports = {
     decryptStringWithPublicKey: decryptStringWithPublicKey,
     generateKeyPair: generateKeyPair
 }
+
+//generateKeyPair("dom");
 
 //generateKeyPair("test1");
  //var enTx = encryptStringWithRsaPublicKey("test", path.join(__dirname, '..', 'tmp', 'pairName.pub'));

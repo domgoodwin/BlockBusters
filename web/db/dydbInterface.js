@@ -18,21 +18,31 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
-exports.login = function login(passphrase, username, privateKey){
+exports.login = function login(passphrase, username, privateKey, callback){
   var data = getUser(username, function(cb) {
     //var kPair = key.generateKeyPair("test");
+
     var shasum = crypto.createHash('sha256');
-    console.log(privateKey);
-    console.log("before:" + passphrase);
-    var pass = key.encryptStringWithPrivateKey(passphrase, privateKey.private);
-    console.log("mid:" + pass);
+    //console.log(privateKey);
+    //console.log("before:" + passphrase);
+    var pass = key.encryptStringWithPrivateKey(passphrase, privateKey);
+    //console.log("mid:" + pass);
     //var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
-    console.log(cb.Item.pub_key);
-    pass  = key.decryptStringWithPublicKey(pass, cb.Item.pub_key);
-    console.log("after:" + pass);
-    var hash = crypto.createHash('sha1');
-    var hashed = shasum.digest("pass");
-    return (hashed == cb.Item.passphrase);
+    //console.log(cb.Item.pub_key);
+    pass  = key.decryptStringWithPublicKey(pass, privateKey);
+    //console.log("after:" + pass);
+    // var hash = crypto.createHash('sha1');
+    // var hashed = shasum.digest("pass");
+    var checkPass;
+    try {
+      checkPass = cb.Item.passphrase;
+    } catch (err) {
+      checkPass = "NOT WORKING SON";
+    }
+    var done = (pass == checkPass);
+    console.log("pass:" + pass);
+    console.log("passphrase: " + checkPass)
+    callback(done);
   });
 }
 
@@ -125,7 +135,7 @@ function get(params, cb){
           console.error("Unable to get item. Error JSON:", JSON.stringify(err, null, 2));
           cb(err);
       } else {
-          console.log("Got item:", JSON.stringify(data, null, 2));
+          //console.log("Got item:", JSON.stringify(data, null, 2));
           cb(data);
       }
   });
