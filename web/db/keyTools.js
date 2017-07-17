@@ -6,16 +6,15 @@ var fs = require("fs");
 //for genraing the keys
 var keypair = require('keypair');
 
-var encryptStringWithRsaPublicKey = function(toEncrypt, pubKey) {
+var encryptStringWithPrivateKey = function(toEncrypt, privKey) {
     //var absolutePath = path.resolve(pubKey);
     //var publicKey = fs.readFileSync(absolutePath, "utf8");
-    var publicKey = pubKey;
     var buffer = new Buffer(toEncrypt);
-    var encrypted = crypto.privateEncrypt(publicKey, buffer);
+    var encrypted = crypto.privateEncrypt(privKey, buffer);
     return encrypted.toString("base64");
 };
 
-var decryptStringWithRsaPrivateKey = function(toDecrypt, pubKey) {
+var decryptStringWithPublicKey = function(toDecrypt, pubKey) {
     //var absolutePath = path.resolve(privKey);
     //var privateKey = fs.readFileSync(absolutePath, "utf8");
     var buffer = new Buffer(toDecrypt, "base64");
@@ -44,8 +43,8 @@ var saveToFile = function(key, filePath){
 };
 
 module.exports = {
-    encryptStringWithRsaPublicKey: encryptStringWithRsaPublicKey,
-    decryptStringWithRsaPrivateKey: decryptStringWithRsaPrivateKey,
+    encryptStringWithPrivateKey: encryptStringWithPrivateKey,
+    decryptStringWithPublicKey: decryptStringWithPublicKey,
     generateKeyPair: generateKeyPair
 }
 

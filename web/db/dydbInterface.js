@@ -24,7 +24,7 @@ function login(passphrase, username){
     var shasum = crypto.createHash('sha256');
     //var pass = encryptStringWithPrivateKey(passphrase, kPair.private);
     //console.log(pass);
-    var pass  = decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
+    var pass  = key.decryptStringWithPublicKey(passphrase, cb.Item.pub_key);
     //pass  = decryptStringWithPublicKey(pass, kPair.public);
     //console.log(pass);
     var hash = crypto.createHash('sha1');
@@ -34,23 +34,7 @@ function login(passphrase, username){
 }
 
 
-var encryptStringWithPrivateKey = function(toEncrypt, privKey) {
-    //var absolutePath = path.resolve(pubKey);
-    //var publicKey = fs.readFileSync(absolutePath, "utf8");
-    var buffer = new Buffer(toEncrypt);
-    var encrypted = crypto.privateEncrypt(privKey, buffer);
-    return encrypted.toString("base64");
-};
 
-var decryptStringWithPublicKey = function(toDecrypt, pubKey) {
-    //var absolutePath = path.resolve(privKey);
-    //var privateKey = fs.readFileSync(absolutePath, "utf8");
-    var buffer = new Buffer(toDecrypt, "base64");
-    var decrypted = crypto.publicDecrypt(pubKey, buffer);
-    return decrypted.toString("utf8");
-};
-
-login("helloworld", "6");
 
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
