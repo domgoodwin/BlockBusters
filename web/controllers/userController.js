@@ -38,13 +38,16 @@ exports.user_success_get = function(req, res) {
 // Handle Author login on POST
 exports.user_login_post = function(req, res) {
   var post = req.body;
-  var privatekey = req.body.privatekey
-  var passphrase = keyTools.encryptStringWithRsaPublicKey(req.body.passphrase, privatekey);
-  if (db.GetUser(req.body.userid,privatekey,passphrase)) {
+  var privatekey = "-----BEGIN RSA PRIVATE KEY-----\n" + req.body.privatekey + "\n-----END RSA PRIVATE KEY-----";
+  console.log(req.body.passphrase);
+  var passphrase = keyTools.encryptStringWithPrivateKey(req.body.passphrase, privatekey);
+  var done = db.login(passphrase, "10");
+  console.log(done);
+  if (done) {
     req.session.user_id = req.body.userid;
     req.session.privatekey = req.body.privatekey;
     res.redirect('/success');
   } else {
     res.render('login', { info: 'Wrong login info', title:'Login'});
   }
-  };
+ };

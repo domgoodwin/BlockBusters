@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-   p Private key: #{key}
+  div.columns.large-12
+    div.row
+        div.columns.large-6
+            h4 Private key:
+                - var value = key
+    div.row
+        div.columns.large-12
+            input.privateKey(type="text", value=value)
