@@ -1,4 +1,6 @@
 var AWS = require("aws-sdk");
+var key = require('../db/keyTools.js');
+var crypto = require('crypto');
 
 //http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/GettingStarted.NodeJs.03.html
 
@@ -14,6 +16,18 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 // var address = {line1: "line1", line2: "line2", postcode:"aa11 1aa"}
 // insertUser("0", "key", "pass", "test", address)
 
+function login(passphrase, username){
+  var data = getUser(username, function(cb) {
+    console.log(data);
+    var shasum = crypto.createHash('sha256');
+    var pass  = key.decryptStringWithRsaPrivateKey(passphrase, cb.Item.pub_key);
+    var hash = crypto.createHash('sha1');
+    var hashed = shasum.digest("pass");
+    console.log(hashed);
+  });
+}
+
+login("", "6");
 
 exports.InsertNode = function insertNode(nodeID, pubIP, rpcuser, rpcpass, type, host, status){
   var table = "block_nodes";
@@ -50,15 +64,16 @@ exports.InsertUser = function insertUser(userID, pubKey, pass, name, address){
   };
   insert(params);
 }
-exports.GetUser = function getUser(userID){
+function getUser(userID, cb){
   var table = "block_users";
   var params = {
       TableName:table,
       Key:{
-          "user_id": "0" // TODO get ID from next one
+          "user_id": userID
       }
   };
-  get(params);
+  var data = get(params, cb);
+  return data;
 }
 
 exports.GetNextUserID = function getNextID(callback){
@@ -94,13 +109,15 @@ function insert(params){
   });
 }
 
-function get(params){
+function get(params, cb){
   console.log("Getting a item...");
   docClient.get(params, function(err, data) {
       if (err) {
           console.error("Unable to get item. Error JSON:", JSON.stringify(err, null, 2));
+          cb(err);
       } else {
           console.log("Got item:", JSON.stringify(data, null, 2));
+          cb(data);
       }
   });
 }

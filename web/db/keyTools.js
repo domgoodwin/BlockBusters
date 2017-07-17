@@ -11,16 +11,15 @@ var encryptStringWithRsaPublicKey = function(toEncrypt, pubKey) {
     //var publicKey = fs.readFileSync(absolutePath, "utf8");
     var publicKey = pubKey;
     var buffer = new Buffer(toEncrypt);
-    var encrypted = crypto.publicEncrypt(publicKey, buffer);
+    var encrypted = crypto.privateEncrypt(publicKey, buffer);
     return encrypted.toString("base64");
 };
 
-var decryptStringWithRsaPrivateKey = function(toDecrypt, privKey) {
+var decryptStringWithRsaPrivateKey = function(toDecrypt, pubKey) {
     //var absolutePath = path.resolve(privKey);
     //var privateKey = fs.readFileSync(absolutePath, "utf8");
-    var privateKey = privKey;
     var buffer = new Buffer(toDecrypt, "base64");
-    var decrypted = crypto.privateDecrypt(privateKey, buffer);
+    var decrypted = crypto.publicDecrypt(pubKey, buffer);
     return decrypted.toString("utf8");
 };
 
