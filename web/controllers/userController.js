@@ -25,7 +25,7 @@ exports.user_create_post = function(req, res) {
         var pubKey = key.public;
         var privateKey = key.private;
         db.InsertUser(maxID, pubKey, req.body.passphrase, req.body.name, address);
-        res.render('success', {key: privateKey, title: 'User registered successfully'});
+        res.render('success', {key: privateKey, title: 'User registered successfully', id: maxID});
     });
 
 };
