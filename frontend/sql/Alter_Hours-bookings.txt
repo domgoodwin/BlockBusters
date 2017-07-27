@@ -1,2 +1,0 @@
-ALTER TABLE `clarity2`.`bookings` 
-CHANGE COLUMN `Hours` `Hours` DOUBLE(8,3) NOT NULL ;
